@@ -1,16 +1,24 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block title %}List{% endblock title %}
+
 
 {% block content %}
 <br>
 <div class="row">
-  {% for destination in destinations %}
-  <a href="{% url 'destination-detail' destination.id %}">
-    <img src="{{destination.pretty_picture.url}}" />
-    <p>{{destination.name}}</p>
-    <p>{{destination.activities}}</p>
-  </a>
-  {% endfor %}
+    {% for destination in destinations %}
+    <div class="col-sm-12 col-md-6 col-lg-4 " >
+        <div class="card my-card">
+          <div class="card-body">
+            {% if destination.pretty_picture %}
+           <img src={{destination.pretty_picture.url}} class = "card-img-top">
+            {% endif %}
+            <h5 class="card-title"><b>{{destination.name}}</b></h5>
+            <p class="card-text">{{destination.activities}}</p>
+            <a href="{% url 'destination-detail' destination.id %}" class="btn btn-outline-dark">View</a>
+        </div>
+    </div>
+ </div>
+    {% endfor %}
 </div>
 {% endblock content %}
